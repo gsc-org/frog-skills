@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "description": "Frog CLI remote SOP index: task-type classification follows SKILLS categories. Loaded each session; the worker-dispatch agent consults this index to know which categories and SOPs exist, then routes via the SystemOne decision model (choice over categories, noul applicability gates, score injection budget).",
+  "categories": [
+    {
+      "id": "debug-re",
+      "skills": [
+        {
+          "name": "static-triage-dynamic-verify",
+          "title": "Static triage then dynamic verification",
+          "path": "sops/debug-re/static-triage-dynamic-verify/sop.json",
+          "target_kinds": ["binary", "firmware", "process"],
+          "phases": ["triage"]
+        },
+        {
+          "name": "anti-analysis-counter",
+          "title": "Anti-analysis trap identification and counter-selection",
+          "path": "sops/debug-re/anti-analysis-counter/sop.json",
+          "target_kinds": ["binary", "process"],
+          "phases": ["deep-analysis"]
+        }
+      ]
+    }
+  ]
+}
