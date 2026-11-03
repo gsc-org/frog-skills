@@ -1,0 +1,24 @@
+{
+  "id": "debug-re/anti-analysis-counter",
+  "version": 1,
+  "domains": ["debug-re"],
+  "title": "Anti-analysis trap identification and counter-selection",
+  "applicability": {
+    "target_kinds": ["binary", "process"],
+    "phases": ["deep-analysis"]
+  },
+  "steps": [
+    { "n": 1, "action": "Collect behavior fingerprints of the suspect routine on an emulated copy before touching the live target", "tool_binding": "verify_naming" },
+    { "n": 2, "action": "Compare the fingerprint surface (reads/writes/register outputs/calls) against the claimed semantics of the symbol name", "tool_binding": "explain_binary" },
+    { "n": 3, "action": "Treat name-claim mismatches as adversarial candidates: verify with a second input vector before concluding", "tool_binding": "verify_hypothesis" }
+  ],
+  "decision_hooks": [
+    {
+      "key": "trap_likelihood",
+      "type": "score",
+      "criteria": "How strongly the observed behavior diverges from the symbol-name claim",
+      "levels": ["consistent", "minor-drift", "suspicious", "clear-mismatch"]
+    }
+  ],
+  "provenance": { "source": "remote", "repo": "gsc-org/frog-skills", "path": "sops/debug-re/anti-analysis-counter" }
+}

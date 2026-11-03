@@ -1,0 +1,24 @@
+{
+  "id": "debug-re/static-triage-dynamic-verify",
+  "version": 1,
+  "domains": ["debug-re"],
+  "title": "Static triage then dynamic verification",
+  "applicability": {
+    "target_kinds": ["binary", "firmware", "process"],
+    "phases": ["triage"]
+  },
+  "steps": [
+    { "n": 1, "action": "Extract structured instruction facts and constants from the target bytes before any execution", "tool_binding": "explain_binary" },
+    { "n": 2, "action": "Resolve symbol anchors and human-readable names for the addresses of interest", "tool_binding": "explain_state" },
+    { "n": 3, "action": "Verify hypotheses on a scratch copy: patch, run to the observation, then roll the checkpoint back", "tool_binding": "verify_hypothesis" },
+    { "n": 4, "action": "Record verified facts with provenance; keep unverified naming claims as hypotheses, never conclusions", "tool_binding": "verify_naming" }
+  ],
+  "decision_hooks": [
+    {
+      "key": "sop_applicability",
+      "type": "noul",
+      "criteria": "The dispatched task involves analyzing an unknown binary or firmware image"
+    }
+  ],
+  "provenance": { "source": "remote", "repo": "gsc-org/frog-skills", "path": "sops/debug-re/static-triage-dynamic-verify" }
+}
