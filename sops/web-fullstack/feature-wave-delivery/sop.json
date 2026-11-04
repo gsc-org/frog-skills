@@ -1,0 +1,24 @@
+{
+  "id": "web-fullstack/feature-wave-delivery",
+  "version": 1,
+  "domains": ["web-fullstack"],
+  "title": "Full-stack feature wave delivery (contract-first, typed API 1:1)",
+  "applicability": {
+    "target_kinds": ["webapp", "api"],
+    "phases": ["implementation"]
+  },
+  "steps": [
+    { "n": 1, "action": "Pin the contract before code: typed API surface with JSON Schema descriptors generated from the same source the runtime uses", "tool_binding": null },
+    { "n": 2, "action": "Implement server and client against the pinned contract in one wave; keep wire types 1:1 with the schema, no hand-copied second schema", "tool_binding": null },
+    { "n": 3, "action": "Exercise the changed flow end to end in the browser the way a user would, including the surrounding routes that share the changed state", "tool_binding": null },
+    { "n": 4, "action": "Verify empty and error states explicitly; a render screenshot alone is not verification", "tool_binding": null }
+  ],
+  "decision_hooks": [
+    {
+      "key": "sop_applicability",
+      "type": "noul",
+      "criteria": "The dispatched task adds or changes a user-visible web feature across server and client"
+    }
+  ],
+  "provenance": { "source": "remote", "repo": "gsc-org/frog-skills", "path": "sops/web-fullstack/feature-wave-delivery" }
+}
