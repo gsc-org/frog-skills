@@ -1,0 +1,24 @@
+{
+  "id": "embedded-firmware/bring-up-on-emulator",
+  "version": 1,
+  "domains": ["embedded-firmware"],
+  "title": "Firmware bring-up on the emulator before touching hardware",
+  "applicability": {
+    "target_kinds": ["firmware", "device"],
+    "phases": ["triage", "implementation"]
+  },
+  "steps": [
+    { "n": 1, "action": "Map the image and entry point in an emulated context; run to the first halt and record the state before any hardware flash", "tool_binding": "explain_state" },
+    { "n": 2, "action": "Use checkpoint-patch-run-rollback to probe peripheral assumptions instead of bricking hardware", "tool_binding": "verify_hypothesis" },
+    { "n": 3, "action": "Time-travel to the faulting event and diff the state against the last known-good checkpoint", "tool_binding": "explain_state" },
+    { "n": 4, "action": "Only after the emulator loop is green, replay the same sequence on the live target with recording enabled", "tool_binding": null }
+  ],
+  "decision_hooks": [
+    {
+      "key": "sop_applicability",
+      "type": "noul",
+      "criteria": "The dispatched task brings up or debugs firmware on an embedded or microcontroller target"
+    }
+  ],
+  "provenance": { "source": "remote", "repo": "gsc-org/frog-skills", "path": "sops/embedded-firmware/bring-up-on-emulator" }
+}
