@@ -1,0 +1,24 @@
+{
+  "id": "protocol-network/capture-to-fsm",
+  "version": 1,
+  "domains": ["protocol-network"],
+  "title": "Capture-to-FSM protocol extraction with timing watermark check",
+  "applicability": {
+    "target_kinds": ["network", "pcap"],
+    "phases": ["triage", "deep-analysis"]
+  },
+  "steps": [
+    { "n": 1, "action": "Ingest the capture and pair requests with responses using the explicit pairing state machine; only request-to-response pairs may form causal edges", "tool_binding": "extract_protocol" },
+    { "n": 2, "action": "Extract the protocol state machine and per-message facts with provenance", "tool_binding": "extract_protocol" },
+    { "n": 3, "action": "Run the timing watermark detector over the inter-arrival time series before trusting the capture as clean input", "tool_binding": "extract_protocol" },
+    { "n": 4, "action": "Treat any watermark finding as adversarial evidence: quarantine the affected window and report, never silently proceed", "tool_binding": null }
+  ],
+  "decision_hooks": [
+    {
+      "key": "sop_applicability",
+      "type": "noul",
+      "criteria": "The dispatched task analyzes captured network traffic or reverse-engineers a wire protocol"
+    }
+  ],
+  "provenance": { "source": "remote", "repo": "gsc-org/frog-skills", "path": "sops/protocol-network/capture-to-fsm" }
+}
