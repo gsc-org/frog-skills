@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "description": "Frog CLI remote SOP index: task-type classification follows SKILLS categories. Loaded each session; the worker-dispatch agent consults this index to know which categories and SOPs exist, then routes via the SystemOne decision model (choice over categories, noul applicability gates, score injection budget).",
+  "version": 2,
+  "description": "Frog CLI remote SOP index: task-type classification follows SKILLS categories. Loaded each session; the worker-dispatch agent consults this index to know which categories and SOPs exist, then routes via the SystemOne decision model (choice over categories, noul applicability gates).",
   "categories": [
     {
       "id": "debug-re",
@@ -18,6 +18,90 @@
           "path": "sops/debug-re/anti-analysis-counter/sop.json",
           "target_kinds": ["binary", "process"],
           "phases": ["deep-analysis"]
+        }
+      ]
+    },
+    {
+      "id": "web-fullstack",
+      "skills": [
+        {
+          "name": "feature-wave-delivery",
+          "title": "Full-stack feature wave delivery (contract-first, typed API 1:1)",
+          "path": "sops/web-fullstack/feature-wave-delivery/sop.json",
+          "target_kinds": ["webapp", "api"],
+          "phases": ["implementation"]
+        }
+      ]
+    },
+    {
+      "id": "protocol-network",
+      "skills": [
+        {
+          "name": "capture-to-fsm",
+          "title": "Capture-to-FSM protocol extraction with timing watermark check",
+          "path": "sops/protocol-network/capture-to-fsm/sop.json",
+          "target_kinds": ["network", "pcap"],
+          "phases": ["triage", "deep-analysis"]
+        }
+      ]
+    },
+    {
+      "id": "embedded-firmware",
+      "skills": [
+        {
+          "name": "bring-up-on-emulator",
+          "title": "Firmware bring-up on the emulator before touching hardware",
+          "path": "sops/embedded-firmware/bring-up-on-emulator/sop.json",
+          "target_kinds": ["firmware", "device"],
+          "phases": ["triage", "implementation"]
+        }
+      ]
+    },
+    {
+      "id": "performance-opt",
+      "skills": [
+        {
+          "name": "state-diff-first",
+          "title": "State-diff-first performance investigation",
+          "path": "sops/performance-opt/state-diff-first/sop.json",
+          "target_kinds": ["process", "service"],
+          "phases": ["deep-analysis"]
+        }
+      ]
+    },
+    {
+      "id": "release-ops",
+      "skills": [
+        {
+          "name": "tiered-gate-then-ship",
+          "title": "Tiered release gate then atomic ship",
+          "path": "sops/release-ops/tiered-gate-then-ship/sop.json",
+          "target_kinds": ["release"],
+          "phases": ["release"]
+        }
+      ]
+    },
+    {
+      "id": "refactor-quality",
+      "skills": [
+        {
+          "name": "behavior-preserving-sweep",
+          "title": "Behavior-preserving refactoring sweep with parity gates",
+          "path": "sops/refactor-quality/behavior-preserving-sweep/sop.json",
+          "target_kinds": ["codebase"],
+          "phases": ["implementation"]
+        }
+      ]
+    },
+    {
+      "id": "test-e2e",
+      "skills": [
+        {
+          "name": "state-dag-coverage",
+          "title": "State-DAG test coverage before case lists",
+          "path": "sops/test-e2e/state-dag-coverage/sop.json",
+          "target_kinds": ["test-suite"],
+          "phases": ["implementation"]
         }
       ]
     }
