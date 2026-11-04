@@ -1,0 +1,24 @@
+{
+  "id": "refactor-quality/behavior-preserving-sweep",
+  "version": 1,
+  "domains": ["refactor-quality"],
+  "title": "Behavior-preserving refactoring sweep with parity gates",
+  "applicability": {
+    "target_kinds": ["codebase"],
+    "phases": ["implementation"]
+  },
+  "steps": [
+    { "n": 1, "action": "Freeze the behavioral baseline: the existing test suite and golden snapshots are the parity contract for the refactor", "tool_binding": null },
+    { "n": 2, "action": "Sweep the whole codebase for the same pattern, not just the reported site; three or more同类 sites become one codemod wave", "tool_binding": null },
+    { "n": 3, "action": "Apply the change as pure structure moves; any behavior difference must be a separate, explicitly justified change", "tool_binding": null },
+    { "n": 4, "action": "Re-run the full affected suite and the parity gates; a green narrow test alone does not close a cross-cutting refactor", "tool_binding": null }
+  ],
+  "decision_hooks": [
+    {
+      "key": "sop_applicability",
+      "type": "noul",
+      "criteria": "The dispatched task refactors, deduplicates, or restructures existing working code"
+    }
+  ],
+  "provenance": { "source": "remote", "repo": "gsc-org/frog-skills", "path": "sops/refactor-quality/behavior-preserving-sweep" }
+}
