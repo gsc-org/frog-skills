@@ -1,0 +1,24 @@
+{
+  "id": "performance-opt/state-diff-first",
+  "version": 1,
+  "domains": ["performance-opt"],
+  "title": "State-diff-first performance investigation",
+  "applicability": {
+    "target_kinds": ["process", "service"],
+    "phases": ["deep-analysis"]
+  },
+  "steps": [
+    { "n": 1, "action": "Capture a recording of the slow path and establish the event timeline before changing anything", "tool_binding": null },
+    { "n": 2, "action": "Diff state and metrics between the fast and slow windows; the divergence point localizes the regression", "tool_binding": "explain_state" },
+    { "n": 3, "action": "Form one hypothesis per divergence and verify each with a controlled patch experiment that rolls back", "tool_binding": "verify_hypothesis" },
+    { "n": 4, "action": "Record verified root cause with evidence; unverified optimizations stay hypotheses", "tool_binding": null }
+  ],
+  "decision_hooks": [
+    {
+      "key": "sop_applicability",
+      "type": "noul",
+      "criteria": "The dispatched task investigates a performance regression or optimization opportunity in running software"
+    }
+  ],
+  "provenance": { "source": "remote", "repo": "gsc-org/frog-skills", "path": "sops/performance-opt/state-diff-first" }
+}
