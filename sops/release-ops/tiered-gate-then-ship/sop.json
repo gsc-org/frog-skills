@@ -1,0 +1,24 @@
+{
+  "id": "release-ops/tiered-gate-then-ship",
+  "version": 1,
+  "domains": ["release-ops"],
+  "title": "Tiered release gate then atomic ship",
+  "applicability": {
+    "target_kinds": ["release"],
+    "phases": ["release"]
+  },
+  "steps": [
+    { "n": 1, "action": "Classify the change set and declare the gate tier (narrow/windowed/ship) with the reason on record; when in doubt choose the higher tier", "tool_binding": null },
+    { "n": 2, "action": "Run the gate to green including the security audit; a red gate stops the release and enters failure analysis, never a retry loop", "tool_binding": null },
+    { "n": 3, "action": "Bump the version as its own commit, build locked, install atomically, then verify the installed binary reports the new version", "tool_binding": null },
+    { "n": 4, "action": "Publish the channel pointer and verify the public pointer resolves to the new version before announcing", "tool_binding": null }
+  ],
+  "decision_hooks": [
+    {
+      "key": "sop_applicability",
+      "type": "noul",
+      "criteria": "The dispatched task prepares or executes a product release"
+    }
+  ],
+  "provenance": { "source": "remote", "repo": "gsc-org/frog-skills", "path": "sops/release-ops/tiered-gate-then-ship" }
+}
